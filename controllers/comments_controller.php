@@ -115,7 +115,7 @@ class CommentsController extends CommentsAppController {
 		}
 		$url = array('plugin'=>'comments', 'action' => 'index', 'admin' => true);
 		$url = Set::merge($url, $this->params['pass']);
-		$this->redirect(Set::merge($url, $this->params['named']));
+		$this->redirect(Set::merge($url, $this->request->params['named']));
 	}
 	
 /**
@@ -203,8 +203,8 @@ class CommentsController extends CommentsAppController {
 		}
 
 		$conditions = array('Comment.user_id' => $userId);
-		if (!empty($this->params['named']['model'])) {
-			$conditions['Comment.model'] = $this->params['named']['model'];
+		if (!empty($this->request->params['named']['model'])) {
+			$conditions['Comment.model'] = $this->request->params['named']['model'];
 		}
 
 		$this->paginate = array(

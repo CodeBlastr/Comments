@@ -9,7 +9,7 @@
 	<li><?php echo $this->Html->link(__d('comments', 'Filter good comments', true), array('action' => 'index', 'clean'));?></li>
 </ul>
 
-<?php echo $this->Form->create('Comment',array('id' => 'CommentForm', 'name' => 'CommentForm', 'url' => Set::merge(array('action' => 'process'), $this->params['named']) ));?>
+<?php echo $this->Form->create('Comment',array('id' => 'CommentForm', 'name' => 'CommentForm', 'url' => Set::merge(array('action' => 'process'), $this->request->params['named']) ));?>
 <?php echo $this->Form->input('Comment.action', array(
 				'type' => 'select', 
 				'options' => array(
