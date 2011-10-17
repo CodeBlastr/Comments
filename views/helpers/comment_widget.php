@@ -87,8 +87,8 @@ class CommentWidgetHelper extends AppHelper {
  * @access public
  * @return void
  */
-	public function beforeRender() {
-		parent::beforeRender();
+	public function beforeRender($viewFile) {
+		parent::beforeRender($viewFile);
 		$View = $this->__view();
 		$this->enabled = !empty($View->viewVars['commentParams']);
 		if ($this->enabled) {

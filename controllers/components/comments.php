@@ -216,7 +216,7 @@ class CommentsComponent extends Object {
  * @return void
  * @access public
  */
-	public function initialize(Controller $controller, $settings = null) {
+	public function initialize(Controller $controller, $settings = array()) {
 		foreach ($settings as $setting => $value) {
 			if (isset($this->{$setting})) {
 				$this->{$setting} = $value;
@@ -231,6 +231,8 @@ class CommentsComponent extends Object {
 			$controller->{$this->modelName}->Behaviors->attach('Comments.Commentable', array('userModelAlias' => $this->userModel, 'userModelClass' => $this->userModelClass));
 		}
 	}
+	
+	function shutdown() { }
 
 /**
  * Callback
@@ -263,7 +265,7 @@ class CommentsComponent extends Object {
  * @return void
  * @access public
  */
-	public function beforeRender() {
+	public function beforeRender($viewFile) {
 		try {
 			if ($this->enabled && in_array($this->Controller->action, $this->actionNames)) {
 				$type = $this->_call('initType');
@@ -291,7 +293,7 @@ class CommentsComponent extends Object {
 		if (!empty($this->Controller->passedArgs['comment_view_type'])) {
 			$type = $this->Controller->passedArgs['comment_view_type'];
 			if (in_array($type, $types)) {
-				$this->Cookie->write($param, $type, true, '+2 weeks');
+				#$this->Cookie->write($param, $type, true, '+2 weeks');
 				return $type;
 			}
 		}
