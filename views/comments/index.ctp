@@ -12,21 +12,21 @@
 <h2><?php __d('comments', 'Comments');?></h2>
 <p>
 <?php
-echo $paginator->counter(array(
+echo $this->Paginator->counter(array(
 'format' => __d('comments', 'Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('comment_id');?></th>
-	<th><?php echo $paginator->sort('foreign_key');?></th>
-	<th><?php echo $paginator->sort('user_id');?></th>
-	<th><?php echo $paginator->sort('model');?></th>
-	<th><?php echo $paginator->sort('approved');?></th>
-	<th><?php echo $paginator->sort('body');?></th>
-	<th><?php echo $paginator->sort('created');?></th>
-	<th><?php echo $paginator->sort('modified');?></th>
+	<th><?php echo $this->Paginator->sort('id');?></th>
+	<th><?php echo $this->Paginator->sort('comment_id');?></th>
+	<th><?php echo $this->Paginator->sort('foreign_key');?></th>
+	<th><?php echo $this->Paginator->sort('user_id');?></th>
+	<th><?php echo $this->Paginator->sort('model');?></th>
+	<th><?php echo $this->Paginator->sort('approved');?></th>
+	<th><?php echo $this->Paginator->sort('body');?></th>
+	<th><?php echo $this->Paginator->sort('created');?></th>
+	<th><?php echo $this->Paginator->sort('modified');?></th>
 	<th class="actions"><?php __d('comments', 'Actions');?></th>
 </tr>
 <?php
@@ -75,9 +75,9 @@ foreach ($comments as $comment):
 </table>
 </div>
 <div class="paging">
-	<?php echo $paginator->prev('<< '.__d('comments', 'previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__d('comments', 'next', true).' >>', array(), null, array('class'=>'disabled'));?>
+	<?php echo $this->Paginator->prev('<< '.__d('comments', 'previous', true), array(), null, array('class'=>'disabled'));?>
+ | 	<?php echo $this->Paginator->numbers();?>
+	<?php echo $this->Paginator->next(__d('comments', 'next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
 <div class="actions">
 	<ul>

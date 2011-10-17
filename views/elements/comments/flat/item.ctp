@@ -33,7 +33,7 @@
 		<a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a>
 		<span class="action"><?php echo join('&nbsp;', $_actionLinks);?></span>
 		<br/>
-		<span><?php echo $_userLink; ?> &nbsp; <?php __d('comments', 'posted'); ?> &nbsp; <?php echo $time->timeAgoInWords($comment['Comment']['created']); ?></span>
+		<span><?php echo $_userLink; ?> &nbsp; <?php __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></span>
 	</div>
 	<div class="body"><?php echo $cleaner->bbcode2js($comment['Comment']['body']);?></div>
 </div>
