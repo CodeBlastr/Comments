@@ -105,9 +105,9 @@ class CommentsController extends CommentsAppController {
  */
 	public function admin_process($type = null) {
 		$addInfo = '';
-		if (!empty($this->data)) {
+		if (!empty($this->request->data)) {
 			try {
-				$message = $this->Comment->process($this->data['Comment']['action'], $this->data);
+				$message = $this->Comment->process($this->request->data['Comment']['action'], $this->request->data);
 			} catch (Exception $ex) {
 				$message = $ex->getMessages();				
 			}
@@ -233,8 +233,8 @@ class CommentsController extends CommentsAppController {
  * @return null
  */
 	public function add() {
-		if (!empty($this->data)) {
-			if ($this->Comment->save($this->data)) {
+		if (!empty($this->request->data)) {
+			if ($this->Comment->save($this->request->data)) {
 				$this->Session->setFlash('Comment Added');
 			} else {
 				$this->Session->setFlash('Comment can not be saved');

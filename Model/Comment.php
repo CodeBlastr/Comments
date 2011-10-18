@@ -74,8 +74,8 @@ class Comment extends CommentsAppModel {
  * @access public
  */
 	public function beforeSave() {
-		if (!isset($this->data[$this->alias]['language'])) {
-			$this->data[$this->alias]['language'] = Configure::read('Config.language');
+		if (!isset($this->request->data[$this->alias]['language'])) {
+			$this->request->data[$this->alias]['language'] = Configure::read('Config.language');
 		}
 		return true;
 	}
