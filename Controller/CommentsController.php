@@ -64,7 +64,7 @@ class CommentsController extends CommentsAppController {
  * @param string
  * @access public
  */
-	public function admin_index($type = 'spam') {
+	public function index($type = 'spam') {
 		$this->Comment->recursive = 0;
 		$this->Comment->bindModel(array(
 			'belongsTo' => array(
@@ -72,7 +72,7 @@ class CommentsController extends CommentsAppController {
 					'className' => 'Users.User', 
 					'foreignKey' => 'user_id'))));
 		$conditions = array();
-		if (App::import('Component', 'Search.Prg')) {
+		if (App::uses('Search.Prg', 'Controller/Component')) {
 			$this->Prg = new PrgComponent();
 			$this->Prg->initialize($this);
 			$this->Comment->Behaviors->attach('Search.Searchable');
@@ -103,7 +103,7 @@ class CommentsController extends CommentsAppController {
  * @param string $folder Name of the folder to process
  * @access public
  */
-	public function admin_process($type = null) {
+	public function process($type = null) {
 		$addInfo = '';
 		if (!empty($this->request->data)) {
 			try {
@@ -124,7 +124,7 @@ class CommentsController extends CommentsAppController {
  * @param string UUID
  * @access public
  */
-	public function admin_spam($id) {
+	public function spam($id) {
 		$this->Comment->id = $id;
 		if (!$this->Comment->exists(true)) {
 			$this->Session->setFlash(__d('comments', 'Wrong comment id', true));
@@ -142,7 +142,7 @@ class CommentsController extends CommentsAppController {
  * @param string UUID
  * @access public
  */
-	public function admin_ham($id) {
+	public function ham($id) {
 		$this->Comment->id = $id;
 		if (!$this->Comment->exists(true)) {
 			$this->Session->setFlash(__d('comments', 'Wrong comment id',true));
@@ -160,7 +160,7 @@ class CommentsController extends CommentsAppController {
  * @param string UUID
  * @access public
  */
-	public function admin_view($id = null) {
+	public function view($id = null) {
 		$this->Comment->id = $id;
 		$comment = $this->Comment->read(null, $id);
 		if (empty($comment)) {
@@ -176,7 +176,7 @@ class CommentsController extends CommentsAppController {
  * @param string UUID
  * @access public
  */
-	public function admin_delete($id = null) {
+	public function delete($id = null) {
 		$this->Comment->id = $id;
 		if (!$this->Comment->exists(true)) {
 			$this->Session->setFlash(__d('comments', 'Invalid id for Comment', true));
