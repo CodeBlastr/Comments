@@ -233,6 +233,7 @@ class CommentsComponent extends Object {
 	}
 	
 	function shutdown() { }
+	function beforeRedirect() { }
 
 /**
  * Callback
