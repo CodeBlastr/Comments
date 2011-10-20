@@ -114,7 +114,7 @@ class CommentsController extends CommentsAppController {
 			$this->Session->setFlash($message);
 		}
 		$url = array('plugin'=>'comments', 'action' => 'index', 'admin' => true);
-		$url = Set::merge($url, $this->params['pass']);
+		$url = Set::merge($url, $this->request->params['pass']);
 		$this->redirect(Set::merge($url, $this->request->params['named']));
 	}
 	
@@ -225,7 +225,7 @@ class CommentsController extends CommentsAppController {
  * @return boolean
  */
 	protected function _isRequestedAction() {
-		return array_key_exists('requested', $this->params);
+		return array_key_exists('requested', $this->request->params);
 	}
 
 /* Adds the comment
