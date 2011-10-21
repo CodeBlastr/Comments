@@ -75,11 +75,11 @@ class CleanerHelper extends AppHelper {
  *
  * @access public
  */
-	public function __contruct() {
+	public function __construct(View $View, $settings = array()) {
 		foreach ($this->config['full'] as $key => $value) {
 			$this->{$key} = $value;
 		}
-		return parent::__construct();
+		parent::__construct($View, $settings);
 	}
 /**
  * Configuration of cleaner. possible to call separately or from clean method
@@ -318,7 +318,7 @@ class CleanerHelper extends AppHelper {
 		//while (preg_match('/src="(\/media\/display\/)([0-9a-z-]{36})"/', $text, $matches)) {
 		//		$name = 'src="' . $matches[1] . $matches[2] . '"';
 		//		$newName = 'src="' . $matches[1] . 'thumb/' . $matches[2] . '"';
-		//		$text = r($name, $newName, $text);
+		//		$text = str_replace($name, $newName, $text);
 		//	}
 		return $text;
 	}

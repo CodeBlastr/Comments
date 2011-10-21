@@ -9,14 +9,14 @@
  */
 ?>
 <?php
-	$_url = array_merge($url, array('action' => r(Configure::read('Routing.admin') . '_', '', $this->action)));
+	$_url = array_merge($url, array('action' => str_replace(Configure::read('Routing.admin') . '_', '', $this->action)));
 	foreach (array('page', 'order', 'sort', 'direction') as $named) {
 		if (isset($this->passedArgs[$named])) {
 			$_url[$named] = $this->passedArgs[$named];
 		}
 	}
 	if ($target) {
-		$_url['action'] = r(Configure::read('Routing.admin') . '_', '', 'comments');
+		$_url['action'] = str_replace(Configure::read('Routing.admin') . '_', '', 'comments');
 		$ajaxUrl = $commentWidget->prepareUrl(array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment)));
 		echo $this->Form->create(null, array('url' => $ajaxUrl, 'target' => $target));
 	} else {

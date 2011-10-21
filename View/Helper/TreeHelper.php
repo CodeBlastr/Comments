@@ -71,6 +71,11 @@ class TreeHelper extends AppHelper {
  * @access public
  */
 	public $helpers = array ('Html');
+	
+	
+	public function __construct(View $View, $settings = array()) {
+		parent::__construct($View, $settings);
+	}
 
 /**
  * Tree generation method.
@@ -105,6 +110,8 @@ class TreeHelper extends AppHelper {
  * @return string html representation of the passed data
  * @access public
  */
+	
+	
 	public function generate($data, $settings = array ()) {
         $this->__settings = array_merge(array(
                 'model' => null,

@@ -11,47 +11,47 @@
 <div class="comments view">
 <h2><?php  __d('comments', 'Comment');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Id'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Parent Comment'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Parent Comment'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($comment['ParentComment']['id'], array('controller'=> 'comments', 'action'=>'view', $comment['ParentComment']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Commented On'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Commented On'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($comment['CommentedOn']['id'], array('controller'=> 'users', 'action'=>'view', $comment['CommentedOn']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'User'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'User'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($comment['User']['id'], array('controller'=> 'users', 'action'=>'view', $comment['User']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Model'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Model'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['model']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Approved'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Approved'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['approved']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Body'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Body'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['body']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Created'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['created']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __d('comments', 'Modified'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __d('comments', 'Modified'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $comment['Comment']['modified']; ?>
 			&nbsp;
@@ -71,20 +71,20 @@
 	</ul>
 </div>
 <div class="related">
-	<h3><?php __d('comments', 'Related Comments');?></h3>
+	<h3><?php echo __d('comments', 'Related Comments');?></h3>
 	<?php if (!empty($comment['ChildComment'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __d('comments', 'Id'); ?></th>
-		<th><?php __d('comments', 'Comment Id'); ?></th>
-		<th><?php __d('comments', 'Foreign Key'); ?></th>
-		<th><?php __d('comments', 'User Id'); ?></th>
-		<th><?php __d('comments', 'Model'); ?></th>
-		<th><?php __d('comments', 'Approved'); ?></th>
-		<th><?php __d('comments', 'Body'); ?></th>
-		<th><?php __d('comments', 'Created'); ?></th>
-		<th><?php __d('comments', 'Modified'); ?></th>
-		<th class="actions"><?php __d('comments', 'Actions');?></th>
+		<th><?php echo __d('comments', 'Id'); ?></th>
+		<th><?php echo __d('comments', 'Comment Id'); ?></th>
+		<th><?php echo __d('comments', 'Foreign Key'); ?></th>
+		<th><?php echo __d('comments', 'User Id'); ?></th>
+		<th><?php echo __d('comments', 'Model'); ?></th>
+		<th><?php echo __d('comments', 'Approved'); ?></th>
+		<th><?php echo __d('comments', 'Body'); ?></th>
+		<th><?php echo __d('comments', 'Created'); ?></th>
+		<th><?php echo __d('comments', 'Modified'); ?></th>
+		<th class="actions"><?php echo __d('comments', 'Actions');?></th>
 	</tr>
 	<?php
 		$i = 0;

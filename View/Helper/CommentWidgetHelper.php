@@ -71,6 +71,10 @@ class CommentWidgetHelper extends AppHelper {
  */
 	public $globalParams = array();
 	
+	public function __construct(View $View, $settings = array()) {
+		parent::__construct($View, $settings);
+	}
+	
 /**
  * Initialize callback
  * 
@@ -89,7 +93,7 @@ class CommentWidgetHelper extends AppHelper {
  */
 	public function beforeRender($viewFile) {
 		parent::beforeRender($viewFile);
-		$View = $this->__view();
+		$View = $this->_View;
 		$this->enabled = !empty($View->viewVars['commentParams']);
 		if ($this->enabled) {
 			foreach ($this->__passedParams as $param) {
@@ -141,7 +145,7 @@ class CommentWidgetHelper extends AppHelper {
 	public function display($params = array()) {
 		$result = '';
 		if ($this->enabled) {
-			$View = $this->__view();
+			$View = $this->_View;
 			$params = Set::merge($View->viewVars['commentParams'], $params);
 			if (isset($params['displayType'])) {
 				$theme = $params['displayType'];
@@ -232,14 +236,14 @@ class CommentWidgetHelper extends AppHelper {
  * @return string, rendered element
  */
 	public function element($name, $params = array()) {
-		$View = $this->__view();
+		$View = $this->_View;
 		if (strpos($name, '/') === false) {
 			$name = 'comments/' . $this->globalParams['theme'] . '/' . $name;
 		}
 		$params = Set::merge($this->globalParams, $params);
-		$response = $View->element($name, $params);
+		$response = $View->Element($name, $params, array('plugin' => 'Comments'));
 		if (is_null($response) || substr($response, 0, 10) === 'Not Found:') {
-			$response = $View->element($name, array_merge($params, array('plugin' => 'comments')));
+			$response = $View->Element($name, array_merge($params), array('plugin' => 'Comments'));
 		}
 		return $response;
 	}
@@ -253,20 +257,6 @@ class CommentWidgetHelper extends AppHelper {
  */
 	public function treeCallback($data) {
 		return $this->element('item', array('comment' => $data['data'], 'data' => $data));
-	}
-
-/**
- * Get current view class
- *
- * @access public
- * @return object, View class
- */
-	private function __view() {
-		if (!empty($this->globalParams['viewInstance'])) {
-			return $this->globalParams['viewInstance'];
-		} else {
-			return ClassRegistry::getObject('view');
-		}
 	}
 
 }
