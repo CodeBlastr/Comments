@@ -1,4 +1,4 @@
-<h2><?php __d('comments', 'Comments');?></h2>
+<h2><?php echo __d('comments', 'Comments');?></h2>
 
 <div class="finder">
 	<?php echo $this->element('comments/finder'); ?>
@@ -29,8 +29,8 @@
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('is_spam');?></th>
 		<th><?php echo $this->Paginator->sort('approved');?></th>
-		<th><?php __d('comments', 'Select...');?> <input id="mainCheck" style="width: 100%;" type="checkbox" onclick="$('.cbox').each (function (id,f) {$('#'+this.id).attr('checked', !!$('#mainCheck').attr('checked'))})"> </th>
-		<th class="actions"><?php __d('comments', 'Actions');?></th>
+		<th><?php echo __d('comments', 'Select...');?> <input id="mainCheck" style="width: 100%;" type="checkbox" onclick="$('.cbox').each (function (id,f) {$('#'+this.id).attr('checked', !!$('#mainCheck').attr('checked'))})"> </th>
+		<th class="actions"><?php echo __d('comments', 'Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;	

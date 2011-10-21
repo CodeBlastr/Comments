@@ -549,7 +549,7 @@ class CommentsComponent extends Object {
 		if ($isAjax) {
 			$this->Controller->set('messageTxt',$message);
 		} else {
-			$this->Session->setFlash($message);
+			$this->Controller->Session->setFlash($message);
 		}
 	}
 
@@ -675,7 +675,9 @@ class CommentsComponent extends Object {
  */
 	function cleanHtml($text, $settings = 'full') {
 		App::import('Helper', 'Comments.Cleaner');
-		$cleaner = & new CleanerHelper();
+		App::uses('View', 'View');
+		$this->View = new View($this->Controller);
+		$cleaner = & new CleanerHelper($this->View);
 		return $cleaner->clean($text, $settings);
 	}
 

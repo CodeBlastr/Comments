@@ -11,7 +11,7 @@
 <div class="comments form">
 <?php echo $this->Form->create('Comment');?>
 	<fieldset>
- 		<legend><?php __d('comments', 'Add Comment');?></legend>
+ 		<legend><?php echo __d('comments', 'Add Comment');?></legend>
 	<?php
 		echo $this->Form->input('comment_id');
 		echo $this->Form->input('foreign_key');

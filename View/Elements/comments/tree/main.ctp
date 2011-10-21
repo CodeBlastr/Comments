@@ -10,7 +10,7 @@
 ?>
 <div class="comments">
 	<a name="comments"></a>
-	<h3><?php __d('comments', 'Comments'); ?>:</h3>
+	<h3><?php echo __d('comments', 'Comments'); ?>:</h3>
 	<?php
 		if (!$isAddMode || $isAddMode):
 			echo $tree->generate(${$viewComments}, array(
@@ -21,7 +21,7 @@
 		endif;
 		if ($allowAddByAuth):
 			if ($isAddMode && $allowAddByAuth): ?>
-				<h4><?php __d('comments', 'Add New Comment'); ?></h4>
+				<h4><?php echo __d('comments', 'Add New Comment'); ?></h4>
 				<?php
 				echo $commentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 			else:

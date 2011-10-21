@@ -9,7 +9,7 @@
  */
 ?>
 <?php
-	$_url = array_merge($url, array('action' => r(Configure::read('Routing.admin') . '_', '', $this->action)));
+	$_url = array_merge($url, array('action' => str_replace(Configure::read('Routing.admin') . '_', '', $this->action)));
 	foreach (array('page', 'order', 'sort', 'direction') as $named) {
 		if (isset($this->passedArgs[$named])) {
 			$_url[$named] = $this->passedArgs[$named];
@@ -18,7 +18,7 @@
 	$reply = !empty($this->passedArgs['reply']) ? '@'.$this->passedArgs['reply'].' : ' : '';
 	$titleReply = !empty($this->passedArgs['title']) ? 'Re: '.$this->passedArgs['title'] : '';
 	if ($target) {
-		$_url['action'] = r(Configure::read('Routing.admin') . '_', '', 'comments');
+		$_url['action'] = str_replace(Configure::read('Routing.admin') . '_', '', 'comments');
 		$ajaxUrl = $commentWidget->prepareUrl(array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment)));
 		echo $this->Form->create(null, array('url' => $ajaxUrl, 'target' => $target));
 	} else {
@@ -40,7 +40,7 @@
 		'default' => $reply,
 	    'error' => array(
 	        'body_required' => __d('comments', 'This field cannot be left blank',true),
-	        'body_markup' => sprintf(__d('comments', 'You can use only headings from %s to %s' ,true), 4, 7)))); 
+	        'body_markup' => __d('comments', 'You can use only headings from _ to _' ,true)))); 
 	echo $this->Form->input('Other.title', array('type' => 'hidden'));
 	echo $this->Form->input('Other.comment', array('type' => 'hidden'));
 	echo $this->Form->input('Other.submit', array('type' => 'hidden'));

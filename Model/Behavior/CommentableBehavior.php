@@ -151,7 +151,6 @@ class CommentableBehavior extends ModelBehavior {
 		if (isset($options['permalink'])) {
 			$model->Comment->permalink = $options['permalink'];
 		}
-
 		$model->Comment->recursive = -1;
 		if (!empty($commentId)) {
 			$model->Comment->id = $commentId;
@@ -183,6 +182,7 @@ class CommentableBehavior extends ModelBehavior {
 					}
 				}
 			}
+
 
 			$model->Comment->create($data);
 

@@ -12,7 +12,7 @@
 <?php
 if ($allowAddByAuth):
 	if ($isAddMode && $allowAddByAuth): ?>
-		<h3><?php __d('comments', 'Add New Comment'); ?></h3>
+		<h3><?php echo __d('comments', 'Add New Comment'); ?></h3>
 		<?php
 		echo $commentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 	else:
@@ -21,7 +21,7 @@ if ($allowAddByAuth):
 		endif;
 	endif;
 else: ?>
-	<h3><?php __d('comments', 'Comments'); ?></h3>
+	<h3><?php echo __d('comments', 'Comments'); ?></h3>
 	<?php
 		echo sprintf(__d('comments', 'If you want to post comments, you need to login first.', true), $this->Html->link(__d('comments', 'login', true), array('controller' => 'users', 'action' => 'login', 'prefix' => $adminRoute, $adminRoute => false)));
 endif;

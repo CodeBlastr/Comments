@@ -32,7 +32,7 @@
 		<?php echo $_userLink; ?>
     </div>
 	<div class="indexCell">
-   		 <div class="indexCell metaData"><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> &nbsp; <?php __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></div>
+   		 <div class="indexCell metaData"><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> &nbsp; <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></div>
     	<div class="indexCell body truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $cleaner->bbcode2js($comment['Comment']['body']);?></div>
     </div>
 </div>

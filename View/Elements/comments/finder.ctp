@@ -1,4 +1,4 @@
-<h3><?php __d('comments', 'Filter comments'); ?></h3>
+<h3><?php echo __d('comments', 'Filter comments'); ?></h3>
 <?php echo $this->Form->create('Comment', array(
 	'url' => array('plugin' => 'comments', 'admin' => true, 'controller' => 'comments', 'action' => 'index'),
 	'class' => 'finder-form',
