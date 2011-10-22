@@ -16,7 +16,7 @@
 		}
 	}
 	$reply = !empty($this->passedArgs['reply']) ? '@'.urldecode($this->passedArgs['reply']).' : ' : '';
-	$titleReply = !empty($this->passedArgs['title']) ? 'Re: '.$this->passedArgs['title'] : '';
+	$titleReply = !empty($this->passedArgs['title']) ? 'Re: '.urldecode($this->passedArgs['title']) : '';
 	if ($target) {
 		$_url['action'] = str_replace(Configure::read('Routing.admin') . '_', '', 'comments');
 		$ajaxUrl = $commentWidget->prepareUrl(array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment)));
@@ -24,7 +24,7 @@
 	} else {
 		echo $this->Form->create(null, array('url' => array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment))));
 	}
-	echo $this->Form->input('Comment.title', array('value' => $titleReply));
+	echo $this->Form->input('Comment.title', array('value' => $titleReply, 'label' => __('Subject')));
 	/*echo $this->Form->input('Comment.body', array(
 		'type' => 'richtext',
 		'label' => 'What comment do you have to make?',
@@ -36,7 +36,7 @@
 	// Bots will very likely fill this fields
 	echo $this->Form->input('Comment.body', array(
 		'type' => 'richtext',
-		'label' => 'What comment do you have to make?',
+		'label' => 'What is your comment?',
 		'default' => $reply,
 	    'error' => array(
 	        'body_required' => __d('comments', 'This field cannot be left blank',true),
