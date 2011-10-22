@@ -15,17 +15,17 @@
 	}
 
 	if (!empty($isAuthorized)) {
-		$_actionLinks[] = $commentWidget->link(__d('comments', 'Reply', true), array_merge($url, array('comment' => $comment['Comment']['id'], '#' => 'comment' . $comment['Comment']['id'], 'reply' => $comment[$userModel]['full_name'], 'title' => $comment['Comment']['title'])));
+		$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Reply', true), array_merge($url, array('comment' => $comment['Comment']['id'], '#' => 'comment' . $comment['Comment']['id'], 'reply' => $comment[$userModel]['full_name'], 'title' => $comment['Comment']['title'])));
 		if (!empty($isAdmin)) {
 			if (empty($comment['Comment']['approved'])) {
-				$_actionLinks[] = $commentWidget->link(__d('comments', 'Publish', true), array_merge($url, array('comment' => $comment['Comment']['id'], 'comment_action' => 'toggleApprove', '#' => 'comment' . $comment['id'])));
+				$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Publish', true), array_merge($url, array('comment' => $comment['Comment']['id'], 'comment_action' => 'toggleApprove', '#' => 'comment' . $comment['id'])));
 			} else {
-				$_actionLinks[] = $commentWidget->link(__d('comments', 'Unpublish', true), array_merge($url, array('comment' => $comment['Comment']['id'], 'comment_action' => 'toggleApprove', '#' => 'comment' . $comment['Comment']['id'])));
+				$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Unpublish', true), array_merge($url, array('comment' => $comment['Comment']['id'], 'comment_action' => 'toggleApprove', '#' => 'comment' . $comment['Comment']['id'])));
 			}
 		}
 	}
 
-	$_userLink = '<div class="avatar">'.$this->element('snpsht', array('plugin' => 'users', 'useGallery' => true, 'userId' => $comment[$userModel]['id'], 'thumbSize' => 'small', 'thumbLink' => '/users/users/view/'.$comment[$userModel]['id'])).'</div>';
+	$_userLink = $this->element('snpsht', array('useGallery' => true, 'userId' => $comment[$userModel]['id'], 'thumbSize' => 'small', 'thumbLink' => '/users/users/view/'.$comment[$userModel]['id']), array('plugin' => 'users'));
 
 ?>
 <div class="comment index"><a name="comment<?php echo $comment['Comment']['id'];?>"></a>
@@ -35,6 +35,6 @@
     </div>
 	<div class="indexCell">
    		 <div class="indexCell metaData"><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> &nbsp; <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></div>
-    	<div class="indexCell body truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $cleaner->bbcode2js($comment['Comment']['body']);?></div>
+    	<div class="indexCell body truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $this->Cleaner->bbcode2js($comment['Comment']['body']);?></div>
     </div>
 </div>
