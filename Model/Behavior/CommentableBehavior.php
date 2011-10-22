@@ -194,7 +194,7 @@ class CommentableBehavior extends ModelBehavior {
 				} else {
 					$fk = null;
 				}
-				$model->Comment->Behaviors->attach('Tree', array('scope' => array('foreign_key' => $fk)));
+				$model->Comment->Behaviors->attach('Tree', array('scope' => array('Comment.foreign_key' => $fk)));
 			}
 			if ($model->Comment->save()) {
 				$id = $model->Comment->id;
@@ -208,7 +208,7 @@ class CommentableBehavior extends ModelBehavior {
 				}
 				return $id;
 			} else {
-				return false;
+				break; return false;
 			}
 		}
 		return null;
@@ -236,7 +236,7 @@ class CommentableBehavior extends ModelBehavior {
 			$model->id = $id;
 			if (!is_null($direction) && $model->exists(true)) {
 				return $model->updateAll(
-					array($model->alias . '.comments' => 'comments ' . $direction),
+					array($model->alias . '.comments' => $model->alias . '.comments ' . $direction),
 					array($model->alias . '.id' => $id));
 			}
 		}
@@ -288,7 +288,7 @@ class CommentableBehavior extends ModelBehavior {
 
 		if ($model->Comment->hasField($spamField)) {
 			$conditions['Comment.' . $spamField] = $this->settings[$model->alias]['cleanValues'];
-		}		
+		}
 		return $conditions;
 	}
 

@@ -99,6 +99,7 @@ class SluggableBehavior extends ModelBehavior {
 		}
 
 		$Model->data[$Model->alias][$settings['slug']] = $slug;
+		return true;
 	}
 
 /**

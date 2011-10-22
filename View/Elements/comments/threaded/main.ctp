@@ -14,8 +14,9 @@
 
 if (!$isAddMode || $isAddMode):
 	//echo $commentWidget->element('paginator');
+	$CommentWidget = $this->CommentWidget;
 	echo $this->Tree->generate(${$viewComments}, array(
-		'callback' => array(&$commentWidget, 'treeCallback'),
+		'callback' => array(&$CommentWidget, 'treeCallback'),
 		'model' => 'Comment',
 		'class' => 'tree-block'));
 endif;

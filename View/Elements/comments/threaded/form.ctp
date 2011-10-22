@@ -15,7 +15,7 @@
 			$_url[$named] = $this->passedArgs[$named];
 		}
 	}
-	$reply = !empty($this->passedArgs['reply']) ? '@'.$this->passedArgs['reply'].' : ' : '';
+	$reply = !empty($this->passedArgs['reply']) ? '@'.urldecode($this->passedArgs['reply']).' : ' : '';
 	$titleReply = !empty($this->passedArgs['title']) ? 'Re: '.$this->passedArgs['title'] : '';
 	if ($target) {
 		$_url['action'] = str_replace(Configure::read('Routing.admin') . '_', '', 'comments');
