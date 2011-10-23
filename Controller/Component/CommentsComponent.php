@@ -208,6 +208,7 @@ class CommentsComponent extends Object {
 
 	function __construct(ComponentCollection $collection, $settings = array()) {
         parent::__construct($collection, $settings);
+		$this->settings = $settings;
     }
 /**
  * Initialize Callback
@@ -216,8 +217,8 @@ class CommentsComponent extends Object {
  * @return void
  * @access public
  */
-	public function initialize(Controller $controller, $settings = array()) {
-		foreach ($settings as $setting => $value) {
+	public function initialize(Controller $controller) {
+		foreach ($this->settings as $setting => $value) {
 			if (isset($this->{$setting})) {
 				$this->{$setting} = $value;
 			}
