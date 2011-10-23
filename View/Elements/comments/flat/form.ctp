@@ -17,7 +17,7 @@
 	}
 	if ($target) {
 		$_url['action'] = str_replace(Configure::read('Routing.admin') . '_', '', 'comments');
-		$ajaxUrl = $commentWidget->prepareUrl(array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment)));
+		$ajaxUrl = $this->CommentWidget->prepareUrl(array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment)));
 		echo $this->Form->create(null, array('url' => $ajaxUrl, 'target' => $target));
 	} else {
 		echo $this->Form->create(null, array('url' => array_merge($_url, array('comment' => $comment, '#' => 'comment' . $comment))));
@@ -33,7 +33,7 @@
 	echo $this->Form->input('Other.submit', array('type' => 'hidden'));
 
 	if ($target) {
-		echo $js->submit(__('Submit', true), array_merge(array('url' => $ajaxUrl), $commentWidget->globalParams['ajaxOptions']));
+		echo $js->submit(__('Submit', true), array_merge(array('url' => $ajaxUrl), $this->CommentWidget->globalParams['ajaxOptions']));
 	} else {
 		echo $this->Form->submit(__('Submit', true));
 	}

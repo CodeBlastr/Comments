@@ -14,10 +14,10 @@ if ($allowAddByAuth):
 	if ($isAddMode && $allowAddByAuth): ?>
 		<h3><?php echo __d('comments', 'Add New Comment'); ?></h3>
 		<?php
-		echo $commentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
+		echo $this->CommentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 	else:
 		if (empty($this->request->params[$adminRoute]) && $allowAddByAuth):
-			echo $commentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)));
+			echo $this->CommentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)));
 		endif;
 	endif;
 else: ?>
@@ -27,9 +27,9 @@ else: ?>
 endif;
 
 if (!$isAddMode || $isAddMode):
-	echo $commentWidget->element('paginator');
+	echo $this->CommentWidget->element('paginator');
 	foreach (${$viewComments} as $comment):
-		echo $commentWidget->element('item', array('comment' => $comment));
+		echo $this->CommentWidget->element('item', array('comment' => $comment));
 	endforeach;
 endif;
 

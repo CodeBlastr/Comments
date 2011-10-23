@@ -10,10 +10,10 @@
 ?>
 <?php
 	$pager = $this->Paginator;
-	if ($commentWidget->globalParams['target']) {
+	if ($this->CommentWidget->globalParams['target']) {
 		$pager->options(array_merge(
-			array('url' => $commentWidget->prepareUrl($url)),
-			$commentWidget->globalParams['ajaxOptions']));
+			array('url' => $this->CommentWidget->prepareUrl($url)),
+			$this->CommentWidget->globalParams['ajaxOptions']));
 	} else {
 		$pager->options(array('url' => $url));
 	}

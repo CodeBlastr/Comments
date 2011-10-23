@@ -17,16 +17,16 @@
 				'callback' => array(&$commentWidget, 'treeCallback'),
 				'model' => 'Comment',
 				'class' => 'tree-block'));
-			echo $commentWidget->element('paginator');
+			echo $this->CommentWidget->element('paginator');
 		endif;
 		if ($allowAddByAuth):
 			if ($isAddMode && $allowAddByAuth): ?>
 				<h4><?php echo __d('comments', 'Add New Comment'); ?></h4>
 				<?php
-				echo $commentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
+				echo $this->CommentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 			else:
 				if (empty($this->request->params[$adminRoute]) && $allowAddByAuth):
-					echo $commentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)));
+					echo $this->CommentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)));
 				endif;
 			endif;
 		else: ?>
