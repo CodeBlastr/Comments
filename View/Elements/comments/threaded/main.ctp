@@ -9,8 +9,9 @@
  */
 ?>
 <div class="comments">
-	<h3><?php echo __d('comments', 'Comments'); ?>:</h3>
-<?php
+  <h3><?php echo __d('comments', 'Comments'); ?>:</h3>
+  <div class="indexContainer">
+    <?php
 
 if (!$isAddMode || $isAddMode):
 	//echo $this->CommentWidget->element('paginator');
@@ -22,20 +23,21 @@ if (!$isAddMode || $isAddMode):
 endif;
 if ($allowAddByAuth):
 	if ($isAddMode && $allowAddByAuth): ?>
-		<?php
+    <?php
 		echo $this->CommentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 	else:
 		if (empty($this->request->params[$adminRoute]) && $allowAddByAuth):
-			echo $this->CommentWidget->link(__d('comments', 'Add Comment', true), am($url, array('comment' => 0)));
+			echo $this->CommentWidget->link(__d('comments', 'Add Comment'), am($url, array('comment' => 0)), array('class' => 'button'));
 		endif;
 	endif;
 else: ?>
-	<h3><?php echo __d('comments', 'Comments'); ?></h3>
-	<?php
+    <h3><?php echo __d('comments', 'Comments'); ?></h3>
+    <?php
 		echo sprintf(__d('comments', 'If you want to post comments, you need to login first.', true), $this->Html->link(__d('comments', 'login', true), array('controller' => 'users', 'action' => 'login', 'prefix' => $adminRoute, $adminRoute => false)));
 endif;
 
 ?>
+  </div>
 </div>
 <?php echo $this->Html->image('/comments/img/indicator.gif', array('id' => 'busy-indicator',
- 'style' => 'display:none;')); ?>
+ 'style' => 'display:none;')); ?> 
