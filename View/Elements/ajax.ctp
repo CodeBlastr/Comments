@@ -28,11 +28,11 @@
 				unset($url['comment']);
 			}
 			
-			echo $this->Html->scriptBlock('setTimeout(function () {' . $js->request(Router::url($url), array('method' => 'get', 'update' => $commentWidget->globalParams['target'])) . '}, 1500);');
+			echo $this->Html->scriptBlock('setTimeout(function () {' . $js->request(Router::url($url), array('method' => 'get', 'update' => $this->CommentWidget->globalParams['target'])) . '}, 1500);');
 		else:
-			echo $commentWidget->display();
+			echo $this->CommentWidget->display();
 		endif;
 	else:
-		echo $commentWidget->display();
+		echo $this->CommentWidget->display();
 	endif;
 ?>

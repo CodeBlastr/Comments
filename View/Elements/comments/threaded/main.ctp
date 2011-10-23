@@ -13,7 +13,7 @@
 <?php
 
 if (!$isAddMode || $isAddMode):
-	//echo $commentWidget->element('paginator');
+	//echo $this->CommentWidget->element('paginator');
 	$CommentWidget = $this->CommentWidget;
 	echo $this->Tree->generate(${$viewComments}, array(
 		'callback' => array(&$CommentWidget, 'treeCallback'),
