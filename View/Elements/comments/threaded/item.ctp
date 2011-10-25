@@ -29,13 +29,20 @@
 
 ?>
 
-<div class="comment index"><a name="comment<?php echo $comment['Comment']['id'];?>"></a>
+<div class="comment index"> <a name="comment<?php echo $comment['Comment']['id'];?>"></a>
   <div class="indexRow">
-    <div class="indexCell image"> <?php echo $_userLink; ?> </div>
-    <div class="indexCell">
-      <div class="indexCell metaData"><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> &nbsp; <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></div>
-      <div class="indexCell body truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $this->Cleaner->bbcode2js($comment['Comment']['body']);?></div>
-      <div class="indexCell">
+    <div class="indexCell imageCell"> <?php echo $_userLink; ?> </div>
+    <div class="indexCell metaCell">
+      <ul class="metaData">
+        <li><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> </li>
+        <li> <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></li>
+      </ul>
+    </div>
+    <div class="indexCell indexData">
+      <div class="indexCell descriptionCell">
+        <div class="truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $this->Cleaner->bbcode2js($comment['Comment']['body']);?></div>
+      </div>
+      <div class="indexCell actionCell">
         <div class="drop-holder indexDrop actions">
           <ul class="drop">
             <li> <?php echo join('&nbsp;', $_actionLinks);?> </li>
