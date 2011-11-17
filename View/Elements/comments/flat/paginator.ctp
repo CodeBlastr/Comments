@@ -6,7 +6,7 @@
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
- */
+ 
 ?>
 <?php
 	$pager = $this->Paginator;
@@ -26,4 +26,4 @@
 	 | 	<?php echo $pager->numbers();?>
 		<?php echo $pager->next(__d('comments', 'Oldest', true).' >>', array(), null, array('class'=>'disabled'));?>
 	</div>
-<?php endif; ?>
+<?php endif; */?>

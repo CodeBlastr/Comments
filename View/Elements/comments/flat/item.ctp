@@ -15,7 +15,7 @@
 	}
 
 	if (!empty($isAuthorized)) {
-		$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Reply', true), array_merge($url, array('comment' => $comment['Comment']['id'], '#' => 'comment' . $comment['Comment']['id'])));
+		#$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Reply', true), array_merge($url, array('comment' => $comment['Comment']['id'], '#' => 'comment' . $comment['Comment']['id'])));
 		if (!empty($isAdmin)) {
 			if (empty($comment['Comment']['approved'])) {
 				$_actionLinks[] = $this->CommentWidget->link(__d('comments', 'Publish', true), array_merge($url, array('comment' => $comment['Comment']['id'], 'comment_action' => 'toggleApprove', '#' => 'comment' . $comment['id'])));
@@ -25,16 +25,31 @@
 		}
 	}
 
-	$_userLink = $comment[$userModel]['username'];
+	#$_userLink = $comment[$userModel]['username'];
+	$_userLink = $this->element('snpsht', array('useGallery' => true, 'userId' => $comment[$userModel]['id'], 'thumbSize' => 'small', 'thumbLink' => '/users/users/view/'.$comment[$userModel]['id']), array('plugin' => 'users'));
 
 ?>
-<div class="comment">
-	<div class="header">
-		<a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a>
-		<span class="action"><?php echo join('&nbsp;', $_actionLinks);?></span>
-		<br/>
-		<span><?php echo $_userLink; ?> &nbsp; <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></span>
-	</div>
-	<div class="body"><?php echo $cleaner->bbcode2js($comment['Comment']['body']);?></div>
-</div>
 
+<div class="comment index"> <a name="comment<?php echo $comment['Comment']['id'];?>"></a>
+  <div class="indexRow">
+    <div class="indexCell imageCell"> <?php echo $_userLink; ?> </div>
+    <div class="indexCell metaCell">
+      <ul class="metaData">
+        <li><?php echo $this->Html->link($comment[$userModel]['full_name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $comment[$userModel]['id'])); ?> </li>
+        <li> <?php echo __d('comments', 'posted'); ?> &nbsp; <?php echo $this->Time->timeAgoInWords($comment['Comment']['created']); ?></li>
+      </ul>
+    </div>
+    <div class="indexCell indexData">
+      <div class="indexCell descriptionCell">
+        <div class="truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $this->Cleaner->bbcode2js($comment['Comment']['body']);?></div>
+      </div>
+      <div class="indexCell actionCell">
+        <div class="drop-holder indexDrop actions">
+          <ul class="drop">
+            <li> <?php echo join('&nbsp;', $_actionLinks);?> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

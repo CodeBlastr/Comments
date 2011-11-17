@@ -24,9 +24,10 @@
 	}
 	echo $this->Form->input('Comment.title');
 	echo $this->Form->input('Comment.body', array(
+		'type' => 'richtext',
 	    'error' => array(
-	        'body_required' => __d('comments', 'This field cannot be left blank',true),
-	        'body_markup' => sprintf(__d('comments', 'You can use only headings from %s to %s' ,true), 4, 7))));
+	        'body_required' => __d('comments', 'This field cannot be left blank'),
+	        'body_markup' => sprintf(__d('comments', 'You can use only headings from %s to %s'), 4, 7))));
 	// Bots will very likely fill this fields
 	echo $this->Form->input('Other.title', array('type' => 'hidden'));
 	echo $this->Form->input('Other.comment', array('type' => 'hidden'));
