@@ -358,13 +358,12 @@ class CommentsComponent extends Object {
 		$this->Controller->paginate['Comment'] = compact('order', 'conditions', 'limit');
 		$data = $this->Controller->paginate('Comment');
 		$parents = array();
-		debug($conditions);
 		if (isset($data[0]['Comment'])) {
 			$rec = $data[0]['Comment'];
 			$conditions[] = array('Comment.lft <' => $rec['lft']);
 			$conditions[] = array('Comment.rght >' => $rec['rght']);
 			$parents = $this->Controller->{$this->modelName}->Comment->find('all', compact('conditions', 'order'));
-		}
+		}		
 		return array_merge($parents, $data);
 	}
 
@@ -376,6 +375,7 @@ class CommentsComponent extends Object {
  * @access public
  */
 	public function callback_fetchDataFlat($options) {
+		$this->Controller->paginate = array('order' => array('Comment.created' => 'desc')); // zuha
 		$conditions = $this->_prepareModel($options);
 		return $this->Controller->paginate($this->assocName, $conditions);
 	}

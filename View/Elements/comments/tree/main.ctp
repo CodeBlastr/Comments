@@ -13,7 +13,7 @@
 	<h3><?php echo __d('comments', 'Comments'); ?>:</h3>
 	<?php
 		if (!$isAddMode || $isAddMode):
-			echo $tree->generate(${$viewComments}, array(
+			echo $this->Tree->generate(${$viewComments}, array(
 				'callback' => array(&$commentWidget, 'treeCallback'),
 				'model' => 'Comment',
 				'class' => 'tree-block'));
