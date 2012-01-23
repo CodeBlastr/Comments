@@ -47,8 +47,8 @@
 
 	if ($target) {
 		echo $js->submit(__('Submit', true), array_merge(array('url' => $ajaxUrl), $this->CommentWidget->globalParams['ajaxOptions']));
-	} else {
-		if (!empty($this->Recaptcha->secureApiUrl)) : 
+	} else { 
+		if (in_array('Recaptcha', CakePlugin::loaded()) && !empty($this->Recaptcha->secureApiUrl)) : 
 			echo $this->Recaptcha->display();
 		endif;
 		echo $this->Form->submit(__('Submit', true));
