@@ -205,7 +205,13 @@ class CommentsComponent extends Object {
  */
 	protected $_supportNamedParams = array('comment', 'comment_action', 'comment_view_type');
 
-
+/**
+ * Constructor.
+ *
+ * @param ComponentCollection $collcetion
+ * @param array $settings
+ * @return void
+ */
 	function __construct(ComponentCollection $collection, $settings = array()) {
         parent::__construct($collection, $settings);
 		$this->settings = $settings;
