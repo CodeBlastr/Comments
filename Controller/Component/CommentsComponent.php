@@ -10,7 +10,7 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright 	  2009 - 2010, Cake Development Corporation
- * @link          http://zuha.com Zuha™ Project
+ * @link          http://zuha.com Zuhaï¿½ Project
  * @package       zuha
  * @subpackage    zuha.app.plugins.comments
  * @license  	  MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -306,7 +306,8 @@ class CommentsComponent extends Object {
 			}
 		}
 
-		$type = $this->Cookie->read($param);
+		//$type = $this->Cookie->read($param);
+		$type = null;
 		if ($type) {
 			if (in_array($type, $types)) {
 				return $type;
