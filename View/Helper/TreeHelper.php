@@ -74,6 +74,7 @@ class TreeHelper extends AppHelper {
 	
 	
 	public function __construct(View $View, $settings = array()) {
+		$this->View = $View; // zuha added line
 		parent::__construct($View, $settings);
 	}
 
@@ -138,9 +139,10 @@ class TreeHelper extends AppHelper {
         if ($indent === null && Configure::read()) {
             $indent = true;
         }
-        $view =& ClassRegistry:: getObject('view');
+        //$view =& ClassRegistry:: getObject('view'); // zuha removed line
         if ($model === null) {
-            $model = Inflector::classify($view->params['models'][0]);
+            $model = Inflector::classify($this->View->params['models'][0]);
+            //$model = Inflector::classify($view->params['models'][0]); // zuha changed above line
         }
         if (!$model) {
             $model = '_NULL_';
@@ -230,7 +232,8 @@ class TreeHelper extends AppHelper {
             $this->__settings = array_merge($this->__settings, $elementData);
             /* Main Content */
             if ($element) {
-                $content = $view->element($element, $elementData);
+                $content = $this->View->element($element, $elementData);
+                // $content = $view->element($element, $elementData); // zuha changed above line
             } elseif ($callback) {
                 list($content) = array_map($callback, array($elementData));
             } else {
