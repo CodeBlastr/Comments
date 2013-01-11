@@ -685,7 +685,7 @@ class CommentsComponent extends Object {
 		App::import('Helper', 'Comments.Cleaner');
 		App::uses('View', 'View');
 		$this->View = new View($this->Controller);
-		$cleaner = & new CleanerHelper($this->View);
+		$cleaner = new CleanerHelper($this->View); // changed from & new to new ^JB
 		return $cleaner->clean($text, $settings);
 	}
 
