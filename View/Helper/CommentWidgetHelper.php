@@ -180,11 +180,12 @@ class CommentWidgetHelper extends AppHelper {
 				$allowAddByModel = 1;
 			}
 			$isAddMode = (isset($params['comment']) && !isset($params['comment_action']));
+			$isAdmin = ( $params['user_role_id'] == '1' ? true : false );
 			$adminRoute = Configure::read('Routing.admin');
 
 			$allowAddByAuth = ($this->globalParams['allowAnonymousComment'] || !empty($View->viewVars['isAuthorized']));
 
-			$params = array_merge($params, compact('url', 'allowAddByAuth', 'allowAddByModel', 'adminRoute', 'isAddMode', 'viewRecord', 'theme'));
+			$params = array_merge($params, compact('isAdmin', 'url', 'allowAddByAuth', 'allowAddByModel', 'adminRoute', 'isAddMode', 'viewRecord', 'theme'));
 
 			$this->globalParams = Set::merge($this->globalParams, $params);
 			$result = $this->element('main');
