@@ -17,7 +17,7 @@ if ($allowAddByAuth):
 		echo $this->CommentWidget->element('form', array('comment' => (!empty($comment) ? $comment : 0)));
 	else:
 		if (empty($this->request->params[$adminRoute]) && $allowAddByAuth):
-			echo $this->CommentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)), array('class' => 'button'));
+			echo $this->CommentWidget->link(__d('comments', 'Add comment', true), am($url, array('comment' => 0)), array('class' => 'btn'));
 		endif;
 	endif;
 else: ?>
