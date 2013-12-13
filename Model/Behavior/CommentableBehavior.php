@@ -43,7 +43,7 @@ class CommentableBehavior extends ModelBehavior {
 	public $defaults = array(
 		'commentModel' => 'Comments.Comment',
 		'spamField' => 'is_spam',
-		'userModelAlias' => 'UserModel',
+		'userModelAlias' => 'User',
 		'userModelClass' => 'User',
 		'spamValues' => array('spam', 'spammanual'),
 		'cleanValues' => array('clean', 'ham'));
