@@ -52,7 +52,18 @@ class CommentWidgetHelper extends AppHelper {
 		'allowAnonymousComment'  => false,
 		'url' => null,
 		'ajaxOptions' => array(),
-		'viewInstance' => null
+		'viewInstance' => null,
+		'titleOptions' => array(
+			'type' => 'text'
+			),  // set to false to remove completely
+		'bodyOptions' => array(
+			'type' => 'textarea',
+			'label' => false,
+		    'error' => array(
+		        'body_required' => 'This field cannot be left blank',
+		        'body_markup' => 'You can use only headings from 4 to 7'
+				)
+			)
 	);
 
 /**
@@ -82,7 +93,7 @@ class CommentWidgetHelper extends AppHelper {
  * @return void
  */
 	public function initialize() {
-		$this->options(array());
+		//$this->options(array());
 	}
 	
 /**
