@@ -41,7 +41,7 @@
     </div>
     <div class="indexCell indexData">
       <div class="indexCell descriptionCell">
-        <div class="truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> : <?php echo $comment['Comment']['body'];?></div>
+        <div class="truncate"><strong><a name="comment<?php echo $comment['Comment']['id'];?>"><?php echo $comment['Comment']['title'];?></a></strong> <?php echo $comment['Comment']['body'];?></div>
       </div>
       <div class="indexCell actionCell">
         <div class="drop-holder indexDrop actions">
