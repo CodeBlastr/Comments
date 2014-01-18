@@ -110,7 +110,7 @@ class Comment extends CommentsAppModel {
  */
 	public function __construct($id = false, $table = null, $ds = null) {
 		//$this->actsAs['Antispam.Antispamable'] = Set::merge($this->actsAs['Antispam.Antispamable'], Configure::read('Antispam.config'));
-		return parent::__construct($id, $table, $ds);
+		parent::__construct($id, $table, $ds);
 	}
 
 /**
