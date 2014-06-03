@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP Comments
  *
@@ -11,47 +12,34 @@
  *
  * @copyright 2009 - 2010, Cake Development Corporation
  * @link      http://github.com/CakeDC/Comments
- * @link          http://zuha.com Zuha™ Project
+ * @link          http://zuha.com Zuhaï¿½ Project
  * @package       zuha
  * @subpackage    zuha.app.plugins.comments
  * @since         Zuha(tm) v 0.0045
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-/**
- * Short description for class.
- *
- */
-
 class CommentsController extends CommentsAppController {
 
 /**
- * Name
- *
  * @var string
  * @access public
  */
 	public $name = 'Comments';
 
 /**
- * Components
- *
  * @var array
  * @access public
  */
 	public $components = array('RequestHandler');
 
 /**
- * Helpers
- *
  * @var array
  * @access public
  */
 	public $helpers = array('Text', 'Time');
 
 /**
- * Uses
- *
  * @var array
  * @access public
  */
@@ -68,8 +56,8 @@ class CommentsController extends CommentsAppController {
 		$this->Comment->recursive = 0;
 		$this->Comment->bindModel(array(
 			'belongsTo' => array(
-				'UserModel'  => array(
-					'className' => 'Users.User', 
+				'UserModel' => array(
+					'className' => 'Users.User',
 					'foreignKey' => 'user_id'))));
 		$conditions = array();
 		if (App::uses('Search.Prg', 'Controller/Component')) {
@@ -87,7 +75,7 @@ class CommentsController extends CommentsAppController {
 		$this->paginate['Comment'] = array(
 			'conditions' => $conditions,
 			'contain' => array('UserModel'),
-			'order' => 'Comment.created DESC'); 
+			'order' => 'Comment.created DESC');
 		if ($type == 'spam') {
 			$this->paginate['Comment']['conditions'] = array('Comment.is_spam' => array('spam', 'spammanual'));
 		} elseif ($type == 'clean') {
@@ -95,7 +83,6 @@ class CommentsController extends CommentsAppController {
 		}
 		$this->set('comments', $this->paginate('Comment'));
 	}
-
 
 /**
  * Processes mailbox folders
@@ -109,15 +96,15 @@ class CommentsController extends CommentsAppController {
 			try {
 				$message = $this->Comment->process($this->request->data['Comment']['action'], $this->request->data);
 			} catch (Exception $ex) {
-				$message = $ex->getMessages();				
+				$message = $ex->getMessages();
 			}
 			$this->Session->setFlash($message);
 		}
-		$url = array('plugin'=>'comments', 'action' => 'index', 'admin' => true);
+		$url = array('plugin' => 'comments', 'action' => 'index', 'admin' => true);
 		$url = Set::merge($url, $this->request->params['pass']);
 		$this->redirect(Set::merge($url, $this->request->params['named']));
 	}
-	
+
 /**
  * Admin mark comment as spam
  *
@@ -145,7 +132,7 @@ class CommentsController extends CommentsAppController {
 	public function ham($id) {
 		$this->Comment->id = $id;
 		if (!$this->Comment->exists(true)) {
-			$this->Session->setFlash(__d('comments', 'Wrong comment id',true));
+			$this->Session->setFlash(__d('comments', 'Wrong comment id', true));
 		} elseif ($this->Comment->markAsHam()) {
 			$this->Session->setFlash(__d('comments', 'Antispam system informed about ham message.', true));
 		} else {
@@ -165,7 +152,7 @@ class CommentsController extends CommentsAppController {
 		$comment = $this->Comment->read(null, $id);
 		if (empty($comment)) {
 			$this->Session->setFlash(__d('comments', 'Invalid Comment.', true));
-			return $this->redirect(array('action'=>'index'));
+			return $this->redirect(array('action' => 'index'));
 		}
 		$this->set('comment', $comment);
 	}
@@ -185,11 +172,11 @@ class CommentsController extends CommentsAppController {
 		} else {
 			$this->Session->setFlash(__d('comments', 'Impossible to delete the Comment. Please try again.', true));
 		}
-		$this->redirect(array('action'=>'index'));
+		$this->redirect(array('action' => 'index'));
 	}
 
 /**
- * Request comments 
+ * Request comments
  *
  * @todo Return only "clean" comments?
  * @todo Return also related models: find a way to automatically bind related models to comments
@@ -242,5 +229,5 @@ class CommentsController extends CommentsAppController {
 		}
 		$this->redirect($this->referer());
 	}
+
 }
-?>
