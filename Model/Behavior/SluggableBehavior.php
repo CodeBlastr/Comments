@@ -35,7 +35,7 @@ class SluggableBehavior extends ModelBehavior {
  * @param array $settings
  * @access public
  */
-	public function setup(&$Model, $settings = array()) {
+	public function setup(Model $Model, $settings = array()) {
 		$this->settings[$Model->alias] = array_merge($this->_defaults, $settings);
 	}
 
@@ -45,7 +45,7 @@ class SluggableBehavior extends ModelBehavior {
  * @param object $Model
  * @access public
  */
-	public function beforeSave(&$Model) {
+	public function beforeSave(Model $Model, $options = array()) {
 		if (empty($Model->data[$Model->alias])) {
 			return;
 		} else if (empty($Model->data[$Model->alias][$this->settings[$Model->alias]['label']])) {

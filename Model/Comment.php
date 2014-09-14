@@ -73,7 +73,7 @@ class Comment extends CommentsAppModel {
  * @return boolean
  * @access public
  */
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
 		if (!isset($this->data[$this->alias]['language'])) {
 			$this->data[$this->alias]['language'] = Configure::read('Config.language');
 		}
@@ -87,7 +87,7 @@ class Comment extends CommentsAppModel {
  * @return boolean
  * @access public
  */
-	public function afterSave($created) {
+	public function afterSave($created, $options = array()) {
 		if ($created) {
 			if ($this->Behaviors->enabled('Antispamable')) {
 				$isSpam = $this->isSpam(null, array('permalink' => $this->permalink));

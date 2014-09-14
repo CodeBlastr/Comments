@@ -55,7 +55,7 @@ class CommentableBehavior extends ModelBehavior {
  * @param array $settings
  * @access public
  */
-	public function setup(&$model, $settings = array()) {
+	public function setup(Model $model, $settings = array()) {
 		if (!isset($this->settings[$model->alias])) {
 			$this->settings[$model->alias] = $this->defaults;
 		}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP Comments
  *
@@ -29,9 +30,9 @@
  * It is also usable to define (in controller, to not fetch unnecessary data
  * in used Controller::paginate() method):
  * var $paginate = array('Comment' => array(
- *	'order' => array('Comment.created' => 'desc'),
- *	'recursive' => 0,
- *	'limit' => 10
+ * 	'order' => array('Comment.created' => 'desc'),
+ * 	'recursive' => 0,
+ * 	'limit' => 10
  * ));
  *
  * Includes helpers TextWidget and CommentWidget for controller, uses method
@@ -55,6 +56,7 @@
  * @subpackage	plugins.comments.controllers.components
  */
 class CommentsComponent extends Object {
+
 /**
  * Components
  *
@@ -208,14 +210,15 @@ class CommentsComponent extends Object {
 /**
  * Constructor.
  *
- * @param ComponentCollection $collcetion
+ * @param ComponentCollection $collection
  * @param array $settings
  * @return void
  */
 	function __construct(ComponentCollection $collection, $settings = array()) {
-        parent::__construct($collection, $settings);
+		parent::__construct($collection, $settings);
 		$this->settings = $settings;
-    }
+	}
+
 /**
  * Initialize Callback
  *
@@ -238,9 +241,14 @@ class CommentsComponent extends Object {
 			$controller->{$this->modelName}->Behaviors->attach('Comments.Commentable', array('userModelAlias' => $this->userModel, 'userModelClass' => $this->userModelClass));
 		}
 	}
-	
-	function shutdown() { }
-	function beforeRedirect() { }
+
+	function shutdown() {
+		
+	}
+
+	function beforeRedirect() {
+		
+	}
 
 /**
  * Callback
@@ -285,6 +293,7 @@ class CommentsComponent extends Object {
 		} catch (BlackHoleException $exception) {
 			return $this->Controller->blackHole($exception->getMessage());
 		} catch (NoActionException $exception) {
+			
 		}
 	}
 
@@ -296,12 +305,12 @@ class CommentsComponent extends Object {
  */
 	public function callback_initType() {
 		$types = array('flat', 'threaded', 'tree');
-		$param = 'Comments.' . $this->modelName;
+		//$param = 'Comments.' . $this->modelName;
 
 		if (!empty($this->Controller->passedArgs['comment_view_type'])) {
 			$type = $this->Controller->passedArgs['comment_view_type'];
 			if (in_array($type, $types)) {
-				#$this->Cookie->write($param, $type, true, '+2 weeks');
+				//$this->Cookie->write($param, $type, true, '+2 weeks');
 				return $type;
 			}
 		}
@@ -326,9 +335,9 @@ class CommentsComponent extends Object {
  * @access public
  */
 	public function callback_view($displayType, $processActions = true) {
-		if (!isset($this->Controller->{$this->modelName}) || 
-			(!array_key_exists($this->assocName, array_merge($this->Controller->{$this->modelName}->hasOne, $this->Controller->{$this->modelName}->hasMany)))) {
-			throw new Exception('CommentsComponent: model '.$this->modelName.' or association '.$this->assocName.' doesn\'t exist');
+		if (!isset($this->Controller->{$this->modelName}) ||
+				(!array_key_exists($this->assocName, array_merge($this->Controller->{$this->modelName}->hasOne, $this->Controller->{$this->modelName}->hasMany)))) {
+			throw new Exception('CommentsComponent: model ' . $this->modelName . ' or association ' . $this->assocName . ' doesn\'t exist');
 		}
 
 		$primaryKey = $this->Controller->{$this->modelName}->primaryKey;
@@ -370,7 +379,7 @@ class CommentsComponent extends Object {
 			$conditions[] = array('Comment.lft <' => $rec['lft']);
 			$conditions[] = array('Comment.rght >' => $rec['rght']);
 			$parents = $this->Controller->{$this->modelName}->Comment->find('all', compact('conditions', 'order'));
-		}		
+		}
 		return array_merge($parents, $data);
 	}
 
@@ -395,14 +404,14 @@ class CommentsComponent extends Object {
  * @access public
  */
 	public function callback_fetchDataThreaded($options) {
-		$Comment =& $this->Controller->{$this->modelName}->Comment;
+		$Comment = & $this->Controller->{$this->modelName}->Comment;
 		$conditions = $this->_prepareModel($options);
 		$fields = array(
-			'Comment.id', 'Comment.user_id', 'Comment.foreign_key', 'Comment.parent_id', 'Comment.approved', 
-			'Comment.title', 'Comment.body', 'Comment.slug', 'Comment.created', 
-			$this->modelName . '.id', 
+			'Comment.id', 'Comment.user_id', 'Comment.foreign_key', 'Comment.parent_id', 'Comment.approved',
+			'Comment.title', 'Comment.body', 'Comment.slug', 'Comment.created',
+			$this->modelName . '.id',
 			$this->userModel . '.id',
-			$this->userModel . '.' . $Comment->{$this->userModel}->displayField, 
+			$this->userModel . '.' . $Comment->{$this->userModel}->displayField,
 			$this->userModel . '.slug');
 		$order = array(
 			'Comment.parent_id' => 'asc',
@@ -492,6 +501,7 @@ class CommentsComponent extends Object {
 						$options['commentId'] = $result;
 						$this->_call('afterAdd', array($options));
 					} catch (BadMethodCallException $exception) {
+						
 					}
 					$this->flash(__d('comments', 'The Comment has been saved.', true));
 					$this->redirect(array('#' => 'comment' . $result));
@@ -518,9 +528,8 @@ class CommentsComponent extends Object {
  * @access public
  */
 	public function callback_toggleApprove($modelId, $commentId) {
-		if (!isset($this->Controller->passedArgs['comment_action']) 
-			|| !($this->Controller->passedArgs['comment_action'] == 'toggle_approve' && $this->Controller->Auth->user('is_admin') == true)) {
-			 throw new BlackHoleException(__d('comments', 'Nonrestricted operation', true));
+		if (!isset($this->Controller->passedArgs['comment_action']) || !($this->Controller->passedArgs['comment_action'] == 'toggle_approve' && $this->Controller->Auth->user('is_admin') == true)) {
+			throw new BlackHoleException(__d('comments', 'Nonrestricted operation', true));
 		}
 		if ($this->Controller->{$this->modelName}->commentToggleApprove($commentId)) {
 			$this->flash(__d('comments', 'The Comment status has been updated.', true));
@@ -555,7 +564,7 @@ class CommentsComponent extends Object {
 	public function flash($message) {
 		$isAjax = isset($this->Controller->params['isAjax']) ? $this->Controller->params['isAjax'] : false;
 		if ($isAjax) {
-			$this->Controller->set('messageTxt',$message);
+			$this->Controller->set('messageTxt', $message);
 		} else {
 			$this->Controller->Session->setFlash($message);
 		}
@@ -626,8 +635,8 @@ class CommentsComponent extends Object {
  * @access protected
  */
 	protected function _call($method, $args = array()) {
-		$methodName = '_callback_comments' .  Inflector::camelize(Inflector::underscore($method));
-		$localMethodName = 'callback_' .  $method;
+		$methodName = '_callback_comments' . Inflector::camelize(Inflector::underscore($method));
+		$localMethodName = 'callback_' . $method;
 		if (method_exists($this->Controller, $methodName)) {
 			return call_user_func_array(array(&$this->Controller, $methodName), $args);
 		} elseif (method_exists($this, $localMethodName)) {
@@ -690,4 +699,3 @@ class CommentsComponent extends Object {
 	}
 
 }
-?>
