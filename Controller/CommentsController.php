@@ -11,7 +11,7 @@
  *
  * @copyright 2009 - 2010, Cake Development Corporation
  * @link      http://github.com/CakeDC/Comments
- * @link          http://zuha.com Zuha™ Project
+ * @link          http://zuha.com Zuhaï¿½ Project
  * @package       zuha
  * @subpackage    zuha.app.plugins.comments
  * @since         Zuha(tm) v 0.0045
@@ -23,7 +23,7 @@
  *
  */
 
-class CommentsController extends CommentsAppController {
+class AppCommentsController extends CommentsAppController {
 
 /**
  * Name
@@ -243,4 +243,7 @@ class CommentsController extends CommentsAppController {
 		$this->redirect($this->referer());
 	}
 }
-?>
+
+if (!isset($refuseInit)) {
+	class CommentsController extends AppCommentsController {}
+}
