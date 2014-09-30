@@ -22,7 +22,7 @@
 
 <table cellpadding="0" cellspacing="0">
 	<tr>
-		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('title');?></th>
 		<th><?php echo $this->Paginator->sort('author_name');?></th>
 		<th><?php echo $this->Paginator->sort('author_email');?></th>
 		<th><?php echo $this->Paginator->sort('author_url');?></th>
@@ -72,13 +72,13 @@
 					?>
 			</td>
 			<td class="actions">
-				<?php echo $this->Html->link(__d('comments', 'Approve', true), array('action' => 'approve', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'Mark as spam', true), array('action' => 'spam', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'Mark as ham', true), array('action' => 'ham', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'Disapprove', true), array('action' => 'disapprove', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'View', true), array('action' => 'view', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'Edit', true), array('action' => 'edit', $comment['Comment']['id'])); ?>
-				<?php echo $this->Html->link(__d('comments', 'Delete', true), array('action' => 'delete', $comment['Comment']['id']), null, sprintf(__d('comments', 'Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
+				<?php echo $this->Html->link(__d('comments', 'Approve', true), array('action' => 'approve', $comment['Comment']['id']), array('class' => 'btn btn-success btn-xs')); ?>
+				<?php echo $this->Html->link(__d('comments', 'Mark as spam', true), array('action' => 'spam', $comment['Comment']['id']), array('class' => 'btn btn-warning btn-xs')); ?>
+				<?php echo $this->Html->link(__d('comments', 'Mark as ham', true), array('action' => 'ham', $comment['Comment']['id']), array('class' => 'btn btn-info btn-xs')); ?>
+				<?php echo $this->Html->link(__d('comments', 'Disapprove', true), array('action' => 'disapprove', $comment['Comment']['id']), array('class' => 'btn btn-danger btn-xs')); ?>
+				<?php echo $this->Html->link(__d('comments', 'View', true), array('action' => 'view', $comment['Comment']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php //echo $this->Html->link(__d('comments', 'Edit', true), array('action' => 'edit', $comment['Comment']['id']), array('class' => 'btn btn-warning btn-xs')); ?>
+				<?php echo $this->Html->link(__d('comments', 'Delete', true), array('action' => 'delete', $comment['Comment']['id']), array('class' => 'btn btn-danger btn-xs'), sprintf(__d('comments', 'Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
